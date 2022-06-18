@@ -1,0 +1,24 @@
+# Front end code assignement - Geosystems Hellas
+
+## Introduction
+In order to work on this assignment, the applicant should be familiar with [React](https://reactjs.org/) and [Leaflet](https://leafletjs.com/). The goal of this assignment is to (1.) understand your current experience with tools / frameworks / libraries related to our daily work and (2.) see what code written by you looks like.
+
+## Instructions
+Complete all or some of the tasks below in a time that you feel is reasonable. If you get stuck on one of the tasks you may skip it. In this case, write some //TODO comments in your code describing your problems and what a possible solution might look like.
+
+## Tasks
+Write a React application to achieve the following:1
+1. Create a new python project using [Flask](https://flask.palletsprojects.com/en/2.1.x/tutorial/layout/). Recommend tools: pip. Note: use `pip freeze -r requirements.txt` for your libraries. The flask backend will be used for the api calls and to deliver the frontend of the application.
+2. In the frontend use [npm](https://www.npmjs.com/) to install any packages. Use [Leaflet](https://leafletjs.com/) into your project and create a map covering the right hand side of the application.
+3.a. Set an initial view of the map to a place of your choice.
+<br>b. Import the leaflet map zoom button on the bottom left position.
+<br>c. Import the leafet control layers button on the top right position (default).
+<br>d. Populate the control layers button with 3 basemaps of your choice ([Leaflet Basemaps](https://leafletjs.com/plugins.html#basemap-providers)).
+4. Create 4 geojson layers (Line, Multipoint, Polygon, Rectangle) using the online tool [geojson.io](http://geojson.io/#map=2/20.0/0.0) and import them in the leaflet map. We suggest all layers are in the same geographical area (e.g. Athens) and name the layers as "Line", "Multipoint", "Polygon", "Rectangle".  
+5. Create a function in the backend for the api call with the following functionalities:
+<br>- Get the name of the layer and return the values 1, 2, 3, and 4 for Line, Multipoint, Polygon and Rectangle respectively.
+6. Bind a popup message for each leaflet layer ([leaflet bindpopup](https://leafletjs.com/reference.html#layergroup-eachlayer)) that displays the name of the layer and the value taken from the backend throught the api call. You can use [Axios](https://github.com/axios/axios) for the api calls in the frontend.
+7. Write a README.md file explaining your code the folder structure.
+8. Upload your code to a private github repository and grant access to it for [johnmaroufidis@gmail.com]().
+
+
