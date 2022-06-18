@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin=""/>
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+        
+
+
+
+        <style>
+            #map {height: 100%; width: 500px;position: absolute; top: 0;right:0;}
+        </style>
+
+
+
+
+    </head>
+    <body>
+        <script src="./GeoJSON/Line.js"></script>
+        <script src="./GeoJSON/Multipoint.js"></script>
+        <script src="./GeoJSON/Polygon.js"></script>
+        <script src="./GeoJSON/Rectangle.js"></script>
+        <div id = "map"></div>
+        <script>
+            
+            
+
+
+
+           
+            var map = L.map('map', {maxZoom: 24,    minZoom: 4,      zoomControl: false}).setView([41.137, 24.89], 15);
+            new L.Control.Zoom({ position: 'bottomleft' }).addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+           }).addTo(map);
+           
+           
+
+
+        var pioneer = L.tileLayer('https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var basic =  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+        });
+
+        basic.addTo(map);
+
+        var atlas = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        });
+
+		var toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.{ext}', {
+			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+			subdomains: 'abcd',
+			minZoom: 0,
+			maxZoom: 20,
+			ext: 'png'	});
+
+
+        var baseMaps = {
+            "basic": basic,
+            "atlas": atlas,
+            "pioneer": pioneer,
+            "toner": toner
+        }
+
+
+
+
+        //geojson
+        var linedata = L.geoJSON(LineJSON).addTo(map);
+        var polygondata = L.geoJSON(PolygonJSON).addTo(map);
+        var rectangledata = L.geoJSON(RectangleJSON).addTo(map);
+        var multipointdata = L.geoJSON(MultipointJSON).addTo(map);
+
+        var overlays = {
+            "Line": linedata,
+            "Multipoint": multipointdata,
+            "Polygon": polygondata,
+            "Rectangle": rectangledata
+        };
+
+        
+        var layerControl = L.control.layers(baseMaps,overlays).addTo(map);
+
+        </script>
+        
+</html>
+

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "leaflet-tilelayer-here": "^1.0.2"
+  }
+}
